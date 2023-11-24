@@ -13,6 +13,6 @@ class Auto(models.Model):
     marca = models.ForeignKey(Marca, on_delete=models.RESTRICT)
     modelo = models.CharField(max_length=200)
     año = models.CharField(max_length=15)
-    image = models.ImageField(upload_to='media/')
+    image = models.ImageField(upload_to='images/', default=None)
 
     

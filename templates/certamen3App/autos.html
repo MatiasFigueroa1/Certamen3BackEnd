@@ -26,8 +26,9 @@
             <tr>
                 <td>{{ auto.marca }}</td>
                 <td>{{ auto.modelo }}</td>
-                <td>{{ auto.año }}</td>
-                <td>{{ auto.imagen }}</td>
+                <td>{{ auto.año }}</td>            
+                <td><img src="../media/{{ auto.image }}" alt="" height=100 width=100/></td>
+                <!--<td>{{ auto.imagen }}</td>-->
             </tr>
             {% endfor %}
         </tbody>

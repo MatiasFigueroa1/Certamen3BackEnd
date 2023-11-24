@@ -9,7 +9,7 @@
 <body class="container mt-5">
     <div class="alert alert-secondary display-1 text-center">LISTADO DE AUTOS</div>
 
-    <form method = 'post'>
+    <form method = 'post' enctype="multipart/form-data">
         {{ form.as_p}}
         {% csrf_token%}
         <input type="submit" value="AGREGAR AUTO" class="btn btn-dark">

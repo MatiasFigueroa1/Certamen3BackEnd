@@ -16,7 +16,7 @@ def listadoAutos(request):
 def agregarAuto(request):
     form = FormAuto()
     if request.method == 'POST' :
-        form = FormAuto(request.POST)
+        form = FormAuto(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         return index(request)
@@ -31,7 +31,7 @@ def listadoMarcas(request):
 def agregarMarca(request):
     form = FormMarca()
     if request.method == 'POST' :
-        form = FormAuto(request.POST)
+        form = FormMarca(request.POST)
         if form.is_valid():
             form.save()
         return index(request)
