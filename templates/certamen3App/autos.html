@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body class="container mt-5">
+    <div class="alert alert-secondary display-1 text-center">LISTADO DE AUTOS</div>
+
+    {% if autos %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Imagen</th>
+                <tr>
+        </thead>
+        <tbody>
+            {% for auto in autos %}
+            <tr>
+                <td>{{ auto.marca }}</td>
+                <td>{{ auto.modelo }}</td>
+                <td>{{ auto.año }}</td>
+                <td>{{ auto.imagen }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+        <strong>No se encuentran autos en el sistema</strong>
+    </div>
+
+    {% endif %}
+
+    <a href="../" clase="btn btn-dark"> VOLVER </a>
+    <a href="../agregarAuto" class="btn btn-dark float-end">AGREGAR AUTOS</a>
+</body>
+</html>
