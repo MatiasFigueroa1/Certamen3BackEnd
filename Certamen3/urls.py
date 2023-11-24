@@ -16,7 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from certamen3App import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index),
+    path('autos/', views.listadoAutos),
+    path('marcas/', views.listadoMarcas),
+    path('agregarAuto/', views.agregarAuto),
+    path('agregarMarca/', views.agregarMarca),
 ]
