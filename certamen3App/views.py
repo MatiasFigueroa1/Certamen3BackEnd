@@ -1,4 +1,5 @@
-from django.shortcuts import render
+import os
+from django.shortcuts import redirect, render
 from certamen3App.models import Auto
 from certamen3App.models import Marca
 from certamen3App.forms import FormAuto
@@ -38,6 +39,38 @@ def agregarMarca(request):
     data = {'form': form}
     return render(request, 'certamen3App/agregarMarca.html', data)
 
+def eliminarMarca(request, id):
+    marca = Marca.objects.get(id = id)
+    marca.delete()
+    return redirect('/marcas')
 
-# def eliminarProyecto(request, id):
-#    proyecto = Proyecto.objects.get(id = id)
+def actualizarMarca(request, id):
+    marca = Marca.objects.get(id = id)
+    form = FormMarca(instance=marca)
+    if request.method == 'POST':
+        form = FormMarca(request.POST, instance=marca)
+        if form.is_valid():
+            form.save()
+        return index(request)
+    data = {'form' : form}
+    return render(request, 'agregarMarca.html', data)
+
+def eliminarAuto(request, id):
+    auto = Auto.objects.get(id = id)
+    #my_object = Auto.objects.get(pk=1)
+    #image_path = my_object.my_image_field.path
+    print(auto.image)
+    os.remove(str(f"media/{auto.image}"))
+    auto.delete()
+    return redirect('/autos')
+
+def actualizarAuto(request, id):
+    auto = Auto.objects.get(id = id)
+    form = FormAuto(instance=auto)
+    if request.method == 'POST':
+        form = FormAuto(request.POST, instance=auto)
+        if form.is_valid():
+            form.save()
+        return index(request)
+    data = {'form' : form}
+    return render(request, 'agregarAuto.html', data)

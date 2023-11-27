@@ -28,6 +28,10 @@ urlpatterns = [
     path('marcas/', views.listadoMarcas),
     path('agregarAuto/', views.agregarAuto),
     path('agregarMarca/', views.agregarMarca),
+    path('eliminarMarca/<int:id>', views.eliminarMarca),
+    path('actualizarMarca/<int:id>', views.actualizarMarca),
+    path('eliminarAuto/<int:id>', views.eliminarAuto),
+    path('actualizarAuto/<int:id>', views.actualizarAuto),
 ]
 
 if settings.DEBUG:
