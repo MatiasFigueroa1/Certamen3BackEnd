@@ -3,39 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .divcentrado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-    {% if form.errors %}
-    <p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
-  {% endif %}
+    <div class="container">
+        <div class="form-container">
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.
+                </div>
+            {% endif %}
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Su cuenta no tiene acceso a esta página. Para continuar,
-      inicie sesión con una cuenta que tenga acceso.</p>
-    {% else %}
-      <p>Por favor inicie sesión para ver esta página.</p>
-    {% endif %}
-  {% endif %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <div class="alert alert-danger" role="alert">
+                        Su cuenta no tiene acceso a esta página. Para continuar,
+                        inicie sesión con una cuenta que tenga acceso.
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        Por favor inicie sesión para ver esta página.
+                    </div>
+                {% endif %}
+            {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
-
-  {# Asume que configura la vista de restablecimiento de contraseña en su URLconf #}
-  <p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="divcentrado"><label for="{{ form.username.id_for_label }}">Nombre de Usuario</label></div>
+                    <div class="input-group divcentrado">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="divcentrado"><label for="{{ form.password.id_for_label }}">Contraseña</label></div>
+                    <div class="input-group divcentrado">
+                        {{ form.password }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Iniciar sesión</button>
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+            {# Asume que configura la vista de restablecimiento de contraseña en su URLconf #}
+            <div class="divcentrado"><p class="mt-3"><a href="{% url 'password_reset' %}" class="text-dark">¿Olvidó su contraseña?</a></p></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -32,6 +32,10 @@ urlpatterns = [
     path('actualizarMarca/<str:nombre>', views.actualizarMarca),
     path('eliminarAuto/<int:id>', views.eliminarAuto),
     path('actualizarAuto/<int:id>', views.actualizarAuto),
+    path('autosapi/', views.autos_list),
+    path('autosapi/<int:pk>', views.autos_detail),
+    path('marcasapi/', views.marcas_list),
+    path('marcasapi/<int:pk>', views.marcas_detail),
 ]
 
 if settings.DEBUG:
